@@ -1,0 +1,87 @@
+@media print {
+  /* 基础布局 */
+  @page {
+    size: A4;
+    margin: 20mm 15mm 25mm 15mm;
+  }
+
+  /* 避免跨页断行 */
+  h1, h2, h3, h4, h5, h6 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  /* 代码块分页优化 */
+  pre {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    overflow-wrap: break-word;
+  }
+
+  /* 图片自动缩放 */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* 表格分页控制 */
+  table {
+    break-inside: auto;
+    page-break-inside: auto;
+  }
+
+  tr {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* 隐藏网页专属元素 */
+  .VPNav,
+  .VPLocalNav,
+  .VPSidebar,
+  .VPDocFooter,
+  .edit-link,
+  .vp-doc .vp-code-group .tabs {
+    display: none !important;
+  }
+
+  /* 内容区域全宽 */
+  .VPContent {
+    padding: 0 !important;
+  }
+
+  .container {
+    max-width: 100% !important;
+  }
+
+  /* 链接显示 URL */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.9em;
+    color: #666;
+  }
+
+  /* 代码块样式 */
+  pre code {
+    font-size: 9pt;
+    line-height: 1.4;
+  }
+
+  /* 标题样式 */
+  h1 {
+    font-size: 24pt;
+    page-break-before: always;
+  }
+
+  h1:first-of-type {
+    page-break-before: avoid;
+  }
+
+  h2 {
+    font-size: 18pt;
+  }
+
+  h3 {
+    font-size: 14pt;
+  }
+}
