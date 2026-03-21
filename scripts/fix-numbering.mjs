@@ -2,7 +2,8 @@
 
 import fs from 'fs'
 import path from 'path'
-import { glob } from 'fast-glob'
+import pkg from 'fast-glob'
+const { glob } = pkg
 import chalk from 'chalk'
 
 export class ChapterNumberingFixer {
