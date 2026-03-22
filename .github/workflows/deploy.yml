@@ -28,6 +28,17 @@ jobs:
           node-version: 22
           cache: npm
 
+      - name: Debug npm and cache state
+        run: |
+          echo "=== Node version ==="
+          node --version
+          echo "=== npm version ==="
+          npm --version
+          echo "=== Check package-lock.json ==="
+          ls -lh package-lock.json || echo "No package-lock.json found"
+          echo "=== npm cache verify ==="
+          npm cache verify || true
+
       - name: Install dependencies
         run: npm ci
 
