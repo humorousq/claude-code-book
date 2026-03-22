@@ -22,4 +22,4 @@ MIT License
 
 - 版本：v1.0.0
 - 发布日期：2026
-- 作者：Everything Claude Code 团队
+- 作者：humorousz
