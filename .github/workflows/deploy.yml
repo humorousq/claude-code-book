@@ -40,7 +40,7 @@ jobs:
           npm cache verify || true
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Fix chapter numbering
         run: npm run fix
