@@ -31,7 +31,7 @@
 cd /Users/zhangzhiquan/Github/claude-code-book
 
 # 添加远程仓库
-git remote add origin https://github.com/humorousz/claude-code-book.git
+git remote add origin https://github.com/humorousq/claude-code-book.git
 
 # 推送代码到 GitHub
 git branch -M main
@@ -85,7 +85,7 @@ git push -u origin main
 ### 2. 访问网站
 
 打开浏览器访问：
-**https://humorousz.github.io/claude-code-book/**
+**https://humorousq.github.io/claude-code-book/**
 
 ---
 
@@ -135,7 +135,7 @@ export default defineConfig({
   // 更新 editLink
   themeConfig: {
     editLink: {
-      pattern: 'https://github.com/humorousz/claude-code-book/edit/main/docs/:path'
+      pattern: 'https://github.com/humorousq/claude-code-book/edit/main/docs/:path'
     }
   }
 })

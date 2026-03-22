@@ -22,15 +22,15 @@ read -p "按 Enter 继续创建仓库，完成后按 Enter..."
 echo ""
 
 echo "第 2 步：添加远程仓库"
-echo "  git remote add origin https://github.com/humorousz/claude-code-book.git"
+echo "  git remote add origin https://github.com/humorousq/claude-code-book.git"
 echo ""
 
 # 检查远程仓库是否已存在
 if git remote | grep -q "origin"; then
     echo "  ℹ️  远程仓库已存在，更新地址..."
-    git remote set-url origin https://github.com/humorousz/claude-code-book.git
+    git remote set-url origin https://github.com/humorousq/claude-code-book.git
 else
-    git remote add origin https://github.com/humorousz/claude-code-book.git
+    git remote add origin https://github.com/humorousq/claude-code-book.git
 fi
 
 echo "✅ 远程仓库已配置"
@@ -43,7 +43,7 @@ echo "✅ 代码已推送"
 echo ""
 
 echo "第 4 步：启用 GitHub Pages"
-echo "  1. 访问：https://github.com/humorousz/claude-code-book/settings/pages"
+echo "  1. 访问：https://github.com/humorousq/claude-code-book/settings/pages"
 echo "  2. Source 选择：GitHub Actions"
 echo "  3. 点击 Save"
 echo ""
@@ -51,7 +51,7 @@ read -p "完成后按 Enter 继续..."
 echo ""
 
 echo "✅ 网站即将部署到："
-echo "  https://humorousz.github.io/claude-code-book/"
+echo "  https://humorousq.github.io/claude-code-book/"
 echo ""
 
 echo "第 5 步：创建第一个 Release（可选）"
@@ -65,7 +65,7 @@ if [ "$create_release" = "y" ] || [ "$create_release" = "Y" ]; then
     echo "✅ Release 已创建"
     echo ""
     echo "📦 查看发布："
-    echo "  https://github.com/humorousz/claude-code-book/releases"
+    echo "  https://github.com/humorousq/claude-code-book/releases"
     echo ""
     echo "⏳ GitHub Actions 正在生成 PDF（大约 3-5 分钟）..."
 fi
@@ -74,8 +74,8 @@ echo ""
 echo "🎉 部署完成！"
 echo ""
 echo "📚 访问您的书籍："
-echo "  https://humorousz.github.io/claude-code-book/"
+echo "  https://humorousq.github.io/claude-code-book/"
 echo ""
 echo "📊 查看 Actions 状态："
-echo "  https://github.com/humorousz/claude-code-book/actions"
+echo "  https://github.com/humorousq/claude-code-book/actions"
 echo ""

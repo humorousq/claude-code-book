@@ -64,7 +64,7 @@ export default defineConfig({
     lastUpdated: true,
 
     editLink: {
-      pattern: 'https://github.com/humorousz/claude-code-book/edit/main/docs/:path'
+      pattern: 'https://github.com/humorousq/claude-code-book/edit/main/docs/:path'
     }
   },
 
