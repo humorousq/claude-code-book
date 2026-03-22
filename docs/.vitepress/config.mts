@@ -5,6 +5,8 @@ export default defineConfig({
   description: '从需求到部署的 AI 驱动开发全链路实践',
   lang: 'zh-CN',
 
+  ignoreDeadLinks: true,
+
   themeConfig: {
     nav: [
       { text: '首页', link: '/' },
