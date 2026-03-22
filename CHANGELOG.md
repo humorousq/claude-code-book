@@ -32,5 +32,5 @@
 
 ---
 
-[Unreleased]: https://github.com/username/claude-code-book/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/username/claude-code-book/releases/tag/v1.0.0
+[Unreleased]: https://github.com/humorousq/claude-code-book/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/humorousq/claude-code-book/releases/tag/v1.0.0

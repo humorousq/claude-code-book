@@ -8,7 +8,7 @@
 
 如果您发现错误或有改进建议：
 
-1. 检查 [Issues](https://github.com/username/claude-code-book/issues) 中是否已有相关问题
+1. 检查 [Issues](https://github.com/humorousq/claude-code-book/issues) 中是否已有相关问题
 2. 如果没有，创建新的 Issue，详细描述：
    - 问题的描述
    - 重现步骤

@@ -6,8 +6,8 @@
 
 ## 📖 在线阅读
 
-- [GitHub Pages](https://username.github.io/claude-code-book/)
-- [下载 PDF](https://github.com/username/claude-code-book/releases/latest)
+- [GitHub Pages](https://humorousq.github.io/claude-code-book/)
+- [下载 PDF](https://github.com/humorousq/claude-code-book/releases/latest)
 
 ## 🚀 快速开始
 
@@ -15,7 +15,7 @@
 
 ```bash
 # 克隆仓库
-git clone https://github.com/username/claude-code-book.git
+git clone https://github.com/humorousq/claude-code-book.git
 cd claude-code-book
 
 # 安装依赖

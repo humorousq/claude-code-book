@@ -11,7 +11,7 @@ hero:
       link: /preface
     - theme: alt
       text: GitHub
-      link: https://github.com/username/claude-code-book
+      link: https://github.com/humorousq/claude-code-book
 
 features:
   - icon: 🚀
