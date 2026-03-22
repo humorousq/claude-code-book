@@ -33,6 +33,7 @@ jobs:
 
       - name: Fix chapter numbering
         run: npm run fix
+        continue-on-error: true
 
       - name: Build website
         run: npm run build
