@@ -5,6 +5,10 @@ export default defineConfig({
   description: '从需求到部署的 AI 驱动开发全链路实践',
   lang: 'zh-CN',
 
+  // GitHub Pages 部署配置
+  base: '/claude-code-book/',
+  cleanUrls: true,
+
   ignoreDeadLinks: true,
 
   themeConfig: {
@@ -60,7 +64,7 @@ export default defineConfig({
     lastUpdated: true,
 
     editLink: {
-      pattern: 'https://github.com/username/claude-code-book/edit/main/docs/:path'
+      pattern: 'https://github.com/humorousz/claude-code-book/edit/main/docs/:path'
     }
   },
 
