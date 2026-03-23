@@ -2,8 +2,9 @@
 
 import fs from 'fs'
 import path from 'path'
-import pkg from 'fast-glob'
-const { glob } = pkg
+import { createRequire } from 'module'
+const require = createRequire(import.meta.url)
+const { glob } = require('fast-glob')
 import chalk from 'chalk'
 
 export class ChapterNumberingFixer {
