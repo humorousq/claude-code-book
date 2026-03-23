@@ -215,14 +215,8 @@ Everything Claude Code 是一个开源项目，提供了生产就绪的 Claude C
 - ✅ **Git** - 版本控制
 - ✅ **Claude Code CLI** - Anthropic 官方工具
 
-**可选软件：**
-- Python >= 3.8 - Python 项目开发
-- Go >= 1.19 - Go 项目开发
-- Docker - 容器化部署
-- Kubernetes - 集群管理
-
 **系统要求：**
-- 操作系统：macOS、Linux、Windows
+- 操作系统：macOS、Linux、Windows（完全跨平台支持）
 - 内存：建议 4GB+
 - 磁盘空间：至少 1GB
 
@@ -239,93 +233,113 @@ npm --version   # 应显示 9.0.0 或更高
 git --version
 ```
 
-### 安装步骤
+### 安装方式
 
-#### 步骤1：安装 Claude Code CLI
+Everything Claude Code 提供两种安装方式：插件安装（推荐）和手动安装。
 
-```bash
-# 方式1: 使用 npm 安装
-npm install -g @anthropic/claude-code
+#### 方式一：插件安装（推荐）
 
-# 方式2: 使用 Homebrew (macOS)
-brew install claude-code
+这是最简单的安装方式，通过 Claude Code 的插件市场直接安装。
 
-# 验证安装
-claude-code --version
-```
-
-**预期输出：**
-
-```
-claude-code v1.0.0
-```
-
-#### 步骤2：获取 Everything Claude Code
+**步骤 1：安装插件**
 
 ```bash
-# 克隆完整仓库（推荐）
+# 从插件市场添加
+/plugin marketplace add affaan-m/everything-claude-code
+
+# 安装插件
+/plugin install everything-claude-code@everything-claude-code
+```
+
+**步骤 2：安装规则文件（必需）**
+
+由于上游限制，插件无法自动分发规则文件，需要手动安装：
+
+```bash
+# 克隆仓库
+git clone https://github.com/affaan-m/everything-claude-code.git
+
+# 复制通用规则
+cp -r everything-claude-code/rules/common/* ~/.claude/rules/
+
+# 复制语言特定规则（根据需要选择）
+cp -r everything-claude-code/rules/typescript/* ~/.claude/rules/  # TypeScript
+cp -r everything-claude-code/rules/python/* ~/.claude/rules/      # Python
+cp -r everything-claude-code/rules/golang/* ~/.claude/rules/      # Go
+cp -r everything-claude-code/rules/perl/* ~/.claude/rules/        # Perl
+```
+
+**步骤 3：开始使用**
+
+```bash
+# 使用 everything-claude-code 的 plan 命令
+/everything-claude-code:plan "你的任务描述"
+```
+
+#### 方式二：手动安装
+
+手动安装适合需要完全控制配置的高级用户。
+
+**步骤 1：克隆仓库**
+
+```bash
+# 克隆完整仓库
 git clone https://github.com/affaan-m/everything-claude-code.git
 
 # 进入目录
 cd everything-claude-code
-
-# 查看项目结构
-ls -la
 ```
 
-**目录结构：**
-
-```
-everything-claude-code/
-├── agents/          # 智能体配置
-├── skills/          # 技能定义
-├── commands/        # 命令扩展
-├── hooks/           # 自动化钩子
-├── mcp-configs/     # MCP 服务器配置
-└── scripts/         # 工具脚本
-```
-
-#### 步骤3：配置 Claude Code
+**步骤 2：复制组件到 Claude 配置目录**
 
 ```bash
-# 方式1: 运行配置脚本（推荐）
-node scripts/setup.js
+# 复制所有组件
+cp everything-claude-code/agents/*.md ~/.claude/agents/
+cp -r everything-claude-code/rules/common/* ~/.claude/rules/
+cp everything-claude-code/commands/*.md ~/.claude/commands/
+cp -r everything-claude-code/skills/* ~/.claude/skills/
 
-# 方式2: 手动配置
-cp -r agents ~/.claude/
-cp -r skills ~/.claude/
-cp -r commands ~/.claude/
-cp -r hooks ~/.claude/
-cp -r mcp-configs ~/.claude/
+# 根据需要复制语言特定规则
+cp -r everything-claude-code/rules/typescript/* ~/.claude/rules/
 ```
 
-**验证配置：**
+**步骤 3：配置 Hooks**
+
+从 `hooks/hooks.json` 中提取配置，添加到 `~/.claude/settings.json`：
 
 ```bash
-ls -la ~/.claude/
+# 查看示例配置
+cat everything-claude-code/hooks/hooks.json
+
+# 编辑你的 settings.json
+nano ~/.claude/settings.json
 ```
 
-**预期输出：**
+**步骤 4：配置 MCP 服务器（可选）**
 
-```
-drwxr-xr-x  agents/
-drwxr-xr-x  skills/
-drwxr-xr-x  commands/
-drwxr-xr-x  hooks/
-drwxr-xr-x  mcp-configs/
-```
-
-#### 步骤4：配置 API 密钥
+从 `mcp-configs/mcp-servers.json` 中选择需要的 MCP 服务器配置：
 
 ```bash
-# 设置环境变量
+# 查看可用的 MCP 配置
+cat everything-claude-code/mcp-configs/mcp-servers.json
+
+# 根据需要添加到 settings.json
+```
+
+### 配置 API 密钥
+
+无论使用哪种安装方式，都需要配置 Anthropic API 密钥：
+
+```bash
+# 设置环境变量（临时）
 export ANTHROPIC_API_KEY=your-api-key-here
 
 # 添加到 shell 配置文件（永久生效）
+# 对于 zsh
 echo 'export ANTHROPIC_API_KEY=your-api-key' >> ~/.zshrc
 source ~/.zshrc
 
-# 或添加到 bash 配置
+# 对于 bash
 echo 'export ANTHROPIC_API_KEY=your-api-key' >> ~/.bashrc
 source ~/.bashrc
 ```
@@ -335,9 +349,9 @@ source ~/.bashrc
 2. 登录账号
 3. 在 API Keys 页面创建新密钥
 
-#### 步骤5：项目级配置
+### 项目级配置
 
-在每个项目根目录创建 `CLAUDE.md` 文件：
+在每个项目根目录创建 `CLAUDE.md` 文件，用于项目级配置：
 
 ```bash
 # 创建 CLAUDE.md
@@ -363,47 +377,46 @@ cat > CLAUDE.md << 'EOF'
 EOF
 ```
 
-### 配置文件说明
+### 重要注意事项
 
-**settings.json（全局配置）：**
+**跨平台支持：**
+- ✅ 完全支持 Windows、macOS 和 Linux
+- ✅ 所有 hooks 和脚本已用 Node.js 重写，确保跨平台兼容性
 
-位置：`~/.claude/settings.json`
+**上下文管理：**
+- ⚠️ **不要同时启用所有 MCP** - 建议每个项目启用的 MCP 不超过 10 个
+- ⚠️ 活跃工具总数保持在 80 个以下
+- 💡 根据项目需要选择性启用 MCP 服务器
 
-```json
-{
-  "allowedTools": [
-    "Bash",
-    "Read",
-    "Write",
-    "Edit",
-    "Glob",
-    "Grep"
-  ],
-  "hooks": {
-    "SessionStart": "node ~/.claude/hooks/session-start.js",
-    "Stop": "node ~/.claude/hooks/session-stop.js"
-  }
-}
-```
+**包管理器检测：**
+- 自动检测项目使用的包管理器（npm、pnpm、yarn、bun）
+- 可通过 `CLAUDE_PACKAGE_MANAGER` 环境变量手动指定
 
 ### 验证安装
 
+**检查配置文件：**
+
 ```bash
-# 检查配置文件
+# 查看已安装的组件
 ls -la ~/.claude/
-# 应该看到: agents/ skills/ commands/ hooks/ mcp-configs/
 
-# 运行测试
-claude-code --test
+# 应该看到以下目录：
+# agents/  commands/  rules/  skills/
+```
 
-# 尝试第一个命令
-claude-code /tdd "创建一个简单的用户认证模块"
+**测试命令：**
+
+```bash
+# 测试 everything-claude-code 命令
+/everything-claude-code:plan "创建一个简单的工具函数"
+
+# 如果安装成功，应该能看到 Claude 开始分析任务
 ```
 
 **预期结果：**
-- ✅ 配置文件存在
-- ✅ 测试通过
-- ✅ 命令执行成功
+- ✅ 配置目录存在所需组件
+- ✅ 命令能够正常执行
+- ✅ Claude 能够识别 everything-claude-code 提供的 skills 和 agents
 
 ---
 
