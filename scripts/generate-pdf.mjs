@@ -6,12 +6,43 @@ import { spawn } from 'child_process'
 import fs from 'fs'
 import path from 'path'
 import chalk from 'chalk'
+import http from 'http'
 
 class BookPDFGenerator {
   constructor() {
     this.browser = null
     this.serverProcess = null
-    this.baseUrl = 'http://localhost:4173'
+    this.baseUrl = 'http://localhost:4173/claude-code-book'
+  }
+
+  async checkServerReady(url) {
+    return new Promise((resolve) => {
+      const req = http.get(url, (res) => {
+        resolve(res.statusCode === 200)
+      })
+      req.on('error', () => resolve(false))
+      req.setTimeout(1000, () => {
+        req.destroy()
+        resolve(false)
+      })
+    })
+  }
+
+  async waitForServer(maxAttempts = 30) {
+    console.log(chalk.gray('  等待服务器就绪...'))
+
+    for (let i = 0; i < maxAttempts; i++) {
+      const ready = await this.checkServerReady(this.baseUrl)
+      if (ready) {
+        console.log(chalk.green('  ✓ 服务器已就绪'))
+        return true
+      }
+      await new Promise(resolve => setTimeout(resolve, 2000))
+      process.stdout.write(chalk.gray('.'))
+    }
+
+    console.log()
+    return false
   }
 
   async startServer() {
@@ -23,20 +54,43 @@ class BookPDFGenerator {
         shell: true
       })
 
+      let resolved = false
+      let checkInterval
+
       this.serverProcess.stdout.on('data', (data) => {
         const output = data.toString()
-        if (output.includes('Local:')) {
-          console.log(chalk.gray(`  ${output.trim()}`))
-          setTimeout(resolve, 2000)
-        }
+        console.log(chalk.gray(`  ${output.trim()}`))
       })
 
       this.serverProcess.stderr.on('data', (data) => {
-        console.error(chalk.red(`  ${data.toString()}`))
+        const output = data.toString()
+        console.log(chalk.yellow(`  [stderr] ${output.trim()}`))
       })
 
-      this.serverProcess.on('error', reject)
-      setTimeout(() => reject(new Error('服务器启动超时')), 30000)
+      this.serverProcess.on('error', (error) => {
+        console.error(chalk.red('服务器进程错误:'), error)
+        if (!resolved) reject(error)
+      })
+
+      // 使用轮询检查服务器就绪状态（更可靠）
+      checkInterval = setInterval(async () => {
+        const ready = await this.checkServerReady(this.baseUrl)
+        if (ready && !resolved) {
+          resolved = true
+          clearInterval(checkInterval)
+          console.log(chalk.green('  ✓ 检测到服务器已就绪'))
+          setTimeout(resolve, 2000)
+        }
+      }, 2000)
+
+      // 超时处理
+      setTimeout(() => {
+        if (!resolved) {
+          clearInterval(checkInterval)
+          console.error(chalk.red('等待服务器启动超时'))
+          reject(new Error('服务器启动超时'))
+        }
+      }, 120000)
     })
   }
 
