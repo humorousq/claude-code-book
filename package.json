@@ -1,6 +1,6 @@
 {
   "name": "claude-code-book",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Claude Code 实战工作流指南 - 从需求到部署的 AI 驱动开发全链路实践",
   "type": "module",
   "scripts": {

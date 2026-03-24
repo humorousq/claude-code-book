@@ -172,6 +172,14 @@ class BookPDFGenerator {
     }
 
     const pdfBytes = await mergedPdf.save()
+
+    // 确保输出目录存在
+    const outputDir = path.dirname(outputPath)
+    if (!fs.existsSync(outputDir)) {
+      console.log(chalk.gray(`  创建输出目录: ${outputDir}`))
+      fs.mkdirSync(outputDir, { recursive: true })
+    }
+
     fs.writeFileSync(outputPath, pdfBytes)
 
     const stats = fs.statSync(outputPath)
