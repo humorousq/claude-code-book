@@ -10,7 +10,8 @@
     "pdf": "node scripts/generate-pdf.mjs",
     "fix": "node scripts/fix-numbering.mjs",
     "verify": "node scripts/verify-build.mjs",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "deploy": "bash deploy.sh"
   },
   "keywords": [
     "claude-code",
