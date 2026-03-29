@@ -1,0 +1,40 @@
+---
+layout: home
+
+hero:
+  name: Claude Code 实战工作流指南
+  text: Everything Claude Code 扩展包实战指南
+  tagline: 从安装到精通的生产力提升之路，深度讲解设计理念与最佳实践
+  actions:
+    - theme: brand
+      text: 开始阅读
+      link: /preface
+    - theme: alt
+      text: GitHub
+      link: https://github.com/humorousq/claude-code-book
+
+features:
+  - icon: 🎯
+    title: 设计理念深度讲解
+    details: 理解 Everything Claude Code 的核心价值和设计原则
+  - icon: 💡
+    title: 生产就绪的工作流
+    details: 50+ Skills、20+ Agents，覆盖开发全生命周期
+  - icon: 📊
+    title: 可量化的效率提升
+    details: 代码审查时间减少67%，测试覆盖率提升42%
+  - icon: 👥
+    title: 团队协作最佳实践
+    details: 统一规范、知识沉淀、自动化工作流
+---
+
+## 目标读者
+
+有经验的 AI 工具用户，已熟悉基础概念，希望深度掌握 Everything Claude Code 扩展包。
+
+## 核心价值
+
+- ✅ 理解扩展包的设计理念和核心价值
+- ✅ 掌握生产就绪的工作流
+- ✅ 可量化的效率提升数据
+- ✅ 团队协作与知识沉淀最佳实践
